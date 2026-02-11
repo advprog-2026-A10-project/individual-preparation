@@ -27,7 +27,7 @@ public class ArithmeticUtility {
             }
             return o1 / o2;
         } catch (ArithmeticException e) {
-            throw new ArithmeticException("Division by zero");
+            throw new ArithmeticException("Pembagian oleh nol tidak bisa dilakukan. ");
         }
     }
 
