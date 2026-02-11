@@ -25,8 +25,18 @@ public class ArithmeticUtility {
         return 0.0;
     }
 
-    public double exponent(double o1, int n) {
-        // TODO: Implement me properly!
-        return 0.0;
+    public double exponent(double base, int exp) {
+        if (!Double.isFinite(base)) {
+            throw new IllegalArgumentException("Base must be a finite number (not NaN/Infinity).");
+        }
+
+        double result = Math.pow(base, exp);
+
+        if (!Double.isFinite(result)) {
+            throw new ArithmeticException("Result is not finite (overflow/underflow/invalid).");
+        }
+
+        return result;
+
     }
 }
