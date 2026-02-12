@@ -7,8 +7,13 @@ import org.junit.jupiter.api.Test;
 
 public class ArithmeticUtilityTest {
 
-    private final ArithmeticUtility arithmeticUtility = new ArithmeticUtility();
     private ArithmeticUtility arithmeticUtility;
+  
+    @Test
+    void testSubtractSuccess() {
+        double result = arithmeticUtility.subtract(10.0, 7.0);
+        assertEquals(3.0, result);
+    
 
     @BeforeEach
     void setUp() {
