@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArithmeticUtilityTest {
 
+    private final ArithmeticUtility arithmeticUtility = new ArithmeticUtility();
+
     @Test
-    void example() {
-        // TODO: Implement unit tests for ArithmeticUtility methods
-        assertEquals(0.0, 0.0, 1e-9);
+    void testSubtractSuccess() {
+        double result = arithmeticUtility.subtract(10.0, 7.0);
+        assertEquals(3.0, result);
     }
 }
