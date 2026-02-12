@@ -9,16 +9,16 @@ public class ArithmeticUtilityTest {
 
     private ArithmeticUtility arithmeticUtility;
   
-    @Test
-    void testSubtractSuccess() {
-        double result = arithmeticUtility.subtract(10.0, 7.0);
-        assertEquals(3.0, result);
-    
-
     @BeforeEach
     void setUp() {
         arithmeticUtility = new ArithmeticUtility();
     }
+
+  
+    @Test
+    void testSubtractSuccess() {
+        double result = arithmeticUtility.subtract(10.0, 7.0);
+        assertEquals(3.0, result);
 
     @Test
     void multiplyReturnsProduct() {
