@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ArithmeticUtility {
-    
+
     public double add(double o1, double o2) {
         return o1 + o2;
     }
@@ -31,8 +31,14 @@ public class ArithmeticUtility {
     }
 
     public double divide(double o1, double o2) {
-        // TODO: Implement me properly!
-        return 0.0;
+        try {
+            if (o2 == 0) {
+                throw new ArithmeticException();
+            }
+            return o1 / o2;
+        } catch (ArithmeticException e) {
+            throw new ArithmeticException("Pembagian oleh nol tidak bisa dilakukan. ");
+        }
     }
 
     public double exponent(double base, int exp) {
