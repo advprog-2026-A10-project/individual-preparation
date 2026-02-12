@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VectorUtility {
-
+    //Debug
     public static double[] add(double[] vector1, double[] vector2) {
         if (vector1 == null || vector2 == null) {
             throw new IllegalArgumentException("Vectors must not be null.");
