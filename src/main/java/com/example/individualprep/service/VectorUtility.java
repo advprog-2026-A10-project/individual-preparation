@@ -25,8 +25,8 @@ public class VectorUtility {
         return 0.0;
     }
     
+    // Asumsi norm dalam euclidean
     public double norm(double[] v1) {
-        // TODO: Implement me properly!
-        return 0.0;
+        return Math.sqrt(dotProduct(v1, v1));
     }
 }
