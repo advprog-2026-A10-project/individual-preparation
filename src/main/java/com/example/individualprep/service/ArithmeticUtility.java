@@ -15,8 +15,20 @@ public class ArithmeticUtility {
     }
 
     public double multiply(double o1, double o2) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (!Double.isFinite(o1)) {
+            throw new IllegalArgumentException("o1 must be finite.");
+        }
+        if (!Double.isFinite(o2)) {
+            throw new IllegalArgumentException("o2 must be finite.");
+        }
+
+        double product = o1 * o2;
+
+        if (!Double.isFinite(product)) {
+            throw new ArithmeticException("Overflow in multiplication.");
+        }
+
+        return product;
     }
 
     public double divide(double o1, double o2) {
