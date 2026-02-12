@@ -42,8 +42,7 @@ jacocoTestReport {
 
 checkstyle {
 	toolVersion = '10.12.5'
-	// Use Checkstyle's built-in Sun Checks configuration
-	config = resources.text.fromUri("https://raw.githubusercontent.com/checkstyle/checkstyle/checkstyle-10.12.5/src/main/resources/sun_checks.xml")
+	configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
 	ignoreFailures = false
 	maxWarnings = 0
 }
