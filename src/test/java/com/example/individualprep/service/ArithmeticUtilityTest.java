@@ -3,11 +3,17 @@ package com.example.individualprep.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ArithmeticUtilityTest {
 
     private ArithmeticUtility arithmeticUtility;
+
+    @BeforeEach
+    void setUp() {
+        arithmeticUtility = new ArithmeticUtility();
+    }
 
     @Test
     public void testDivideSuccess() {
@@ -21,17 +27,13 @@ public class ArithmeticUtilityTest {
             arithmeticUtility.divide(10.0, 0.0);
         });
         assertEquals("Pembagian oleh nol tidak bisa dilakukan. ", exception.getMessage());
-  
-    @BeforeEach
-    void setUp() {
-        arithmeticUtility = new ArithmeticUtility();
     }
 
-  
     @Test
     void testSubtractSuccess() {
         double result = arithmeticUtility.subtract(10.0, 7.0);
         assertEquals(3.0, result);
+    }
 
     @Test
     void multiplyReturnsProduct() {
@@ -67,6 +69,7 @@ public class ArithmeticUtilityTest {
         );
 
         assertEquals("Overflow in multiplication.", exception.getMessage());
+    }
 
     @Test
     void testAddTwoPositiveNumbers() {
@@ -85,7 +88,7 @@ public class ArithmeticUtilityTest {
 
     @Test
     void testAddDecimals() {
-        // floating point addition; allow small epsilon
+        // Floating point addition; allow small epsilon.
         assertEquals(0.3, arithmeticUtility.add(0.1, 0.2), 1e-9);
     }
 
@@ -95,8 +98,7 @@ public class ArithmeticUtilityTest {
     }
 }
 
-
-class ArithmethicExponentTests {
+class ArithmeticExponentTests {
 
     private final ArithmeticUtility arithmeticUtility = new ArithmeticUtility();
 
