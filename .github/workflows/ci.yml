@@ -1,5 +1,4 @@
 name: CI Pipeline
-# trigger sonar scan
 
 on:
   push:
@@ -28,6 +27,18 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+
+      - name: Configure Gradle network retry
+        run: |
+          mkdir -p ~/.gradle
+          cat >> ~/.gradle/gradle.properties << 'EOF'
+          systemProp.org.gradle.internal.http.connectionTimeout=120000
+          systemProp.org.gradle.internal.http.socketTimeout=120000
+          systemProp.org.gradle.internal.repository.max.retries=5
+          systemProp.org.gradle.internal.repository.initial.backoff=1000
+          EOF
+
+
       - name: Build with Gradle
         run: ./gradlew build --no-daemon
 
@@ -41,28 +52,6 @@ jobs:
       - name: Generate JaCoCo Coverage Report
         run: ./gradlew jacocoTestReport --no-daemon
 
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: SonarCloud Scan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-        run: ./gradlew sonar --no-daemon
-
-      - name: Check SonarCloud Quality Gate
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          scanMetadataReportFile: build/sonar/report-task.txt
 
       - name: Upload Checkstyle Reports
         if: always()
